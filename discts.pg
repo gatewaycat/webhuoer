@@ -1,0 +1,79 @@
+DOCUMENT();
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGanswermacros.pl",
+  "PGgraphmacros.pl",
+  "PGML.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+$gr = init_graph(-1,-1,7,15,grid=>[8,16],axes=>[0,0],pixels=>[400,200]);
+$gr -> lb('reset');
+foreach my $k (0..15) {
+  $gr -> lb(new Label(-0.125, $k, $k,'black','center','middle'));
+  $gr -> lb(new Label($k, -0.5, $k,'black','center','middle'));
+}
+
+@i = NchooseK(7,7);
+@j = NchooseK(15,15);
+#@i = (0..6);
+#@j = (0..14);
+$aneg1 = $j[7];
+$b7 = $j[9];
+@a = ($j[4], $j[1], $j[0], $j[6], $j[12], $j[11], $j[13]);
+@b = ($j[4], $j[1], $j[0], $j[3],  $j[5],  $j[8], $j[10]);
+@c = ($j[4],    -2, $j[2],    -2, $j[14], $j[11], $j[10]);
+
+foreach my $k (0..5) {
+  $gr->moveTo($k,$a[$i[$k]]); $gr->lineTo($k+1,$b[$i[$k+1]],'black');
+}
+$gr->moveTo(-1,$aneg1); $gr->lineTo(0,$b[$i[0]],'black');
+$gr->moveTo(6,$a[$i[6]]); $gr->lineTo(7,$b7,'black');
+foreach my $k (0..6) {
+  $gr -> stamps(open_circle($k, $a[$i[$k]], 'black'));
+  $gr -> stamps(open_circle($k, $b[$i[$k]], 'black'));
+  $gr -> stamps(closed_circle($k, $c[$i[$k]], 'black'));
+}
+
+@continuitytype = (
+  "Continuity",
+  "Removable discontinuity",
+  "Jump discontinuity",
+  "Infinite discontinuity",
+);
+@e = (0,1,1,2,2,2,2);
+$x1 = random(1,6);
+$correct = $e[$i[$x1]];
+@incorrect = ();
+foreach $k (0..3) {
+  if ($k != $correct) {
+    push(@incorrect, $k)
+    }
+}
+$mc = new_multiple_choice();
+$mc -> qa (
+  "What does `f(x)` have at `x` = $x1?", 
+  $continuitytype[$correct],
+);
+$mc -> extra(
+  $continuitytype[$incorrect[0]],
+  $continuitytype[$incorrect[1]],
+  $continuitytype[$incorrect[2]],
+);
+
+
+BEGIN_PGML
+[@image(insertGraph($gr), width=>400, height=>200, tex_size=>400)@]*
+
+[@ $mc -> print_q() @]***
+[@ $mc -> print_a() @]***
+END_PGML
+
+
+install_problem_grader(~~&std_problem_grader);
+$showPartialCorrectAnswers = 0;
+ANS(radio_cmp($mc -> correct_ans()));
+ENDDOCUMENT();
