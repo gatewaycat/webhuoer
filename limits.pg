@@ -1,0 +1,78 @@
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGgraphmacros.pl",
+"PGML.pl",
+"PGcourse.pl",
+"PGchoicemacros.pl",
+);
+
+Context("Numeric");
+$gr = init_graph(-1,-1,7,15,grid=>[8,16],axes=>[0,0],pixels=>[400,200]);
+$gr -> lb('reset');
+foreach my $k (0..15) {
+    $gr -> lb(new Label(-0.125, $k, $k,'black','center','middle'));
+    $gr -> lb(new Label($k, -0.5, $k,'black','center','middle'));
+}
+
+@i = NchooseK(7,7);
+@j = NchooseK(15,15);
+#@i = (0..6);
+#@j = (0..14);
+$aneg1 = $j[7];
+$b7 = $j[9];
+@a = ($j[4], $j[1], $j[0], $j[6], $j[12], $j[11], $j[13]);
+@b = ($j[4], $j[1], $j[0], $j[3],  $j[5],  $j[8], $j[10]);
+@c = ($j[4],    -2, $j[2],    -2, $j[14], $j[11], $j[10]);
+
+foreach my $k (0..5) {
+    $gr->moveTo($k,$a[$i[$k]]); $gr->lineTo($k+1,$b[$i[$k+1]],'black');
+}
+$gr->moveTo(-1,$aneg1); $gr->lineTo(0,$b[$i[0]],'black');
+$gr->moveTo(6,$a[$i[6]]); $gr->lineTo(7,$b7,'black');
+foreach my $k (0..6) {
+    $gr -> stamps(open_circle($k, $a[$i[$k]], 'black'));
+    $gr -> stamps(open_circle($k, $b[$i[$k]], 'black'));
+    $gr -> stamps(closed_circle($k, $c[$i[$k]], 'black'));
+}
+foreach my $k (0..6) {
+    if ($c[$k] == -2) {$c[$k] = "DNE";} else {}
+}
+foreach my $k (0..6) {
+    if ($a[$k] == $b[$k]) {
+        $d[$k] = $a[$k];
+    } else {
+        $d[$k] = "DNE";
+    }
+}
+
+$x1 = random(1,6);
+$a1 = $a[$i[$x1]];
+$b1 = $b[$i[$x1]];
+$c1 = $c[$i[$x1]];
+$d1 = $d[$i[$x1]];
+do {$x2 = random(1,6);} until ($x2 != $x1);
+$a2 = $a[$i[$x2]];
+$b2 = $b[$i[$x2]];
+$c2 = $c[$i[$x2]];
+$d2 = $d[$i[$x2]];
+
+
+TEXT(beginproblem());
+BEGIN_PGML
+[@image(insertGraph($gr), width=>400, height=>200, tex_size=>400)@]*
+
+Find the following. If the limit does not exist, or if the function value is undefined, write: DNE
+
+[`f([$x1])`] = [__]{$c1},
+[`\quad \lim_{x\to[$x1]^-}`] = [__]{$b1},
+[`\quad \lim_{x\to[$x1]^+}`] = [__]{$a1},
+[`\quad \lim_{x\to[$x1]}`] = [__]{$d1}.
+
+[`f([$x2])`] = [__]{$c2},
+[`\quad \lim_{x\to[$x2]^-}`] = [__]{$b2},
+[`\quad \lim_{x\to[$x2]^+}`] = [__]{$a2},
+[`\quad \lim_{x\to[$x2]}`] = [__]{$d2}.
+END_PGML
+ENDDOCUMENT();
