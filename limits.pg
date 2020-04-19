@@ -27,14 +27,14 @@ $b7 = $j[9];
 @c = ($j[4],    -2, $j[2],    -2, $j[14], $j[11], $j[10]);
 
 foreach my $k (0..5) {
-    $gr->moveTo($k,$a[$i[$k]]); $gr->lineTo($k+1,$b[$i[$k+1]],'black');
+    $gr->moveTo($k,$a[$i[$k]]); $gr->lineTo($k+1,$b[$i[$k+1]],'black',3);
 }
-$gr->moveTo(-1,$aneg1); $gr->lineTo(0,$b[$i[0]],'black');
-$gr->moveTo(6,$a[$i[6]]); $gr->lineTo(7,$b7,'black');
+$gr->moveTo(-1,$aneg1); $gr->lineTo(0,$b[$i[0]],'black',3);
+$gr->moveTo(6,$a[$i[6]]); $gr->lineTo(7,$b7,'black',3);
 foreach my $k (0..6) {
-    $gr -> stamps(open_circle($k, $a[$i[$k]], 'black'));
-    $gr -> stamps(open_circle($k, $b[$i[$k]], 'black'));
-    $gr -> stamps(closed_circle($k, $c[$i[$k]], 'black'));
+    $gr -> stamps(open_circle($k, $a[$i[$k]], 'black',3));
+    $gr -> stamps(open_circle($k, $b[$i[$k]], 'black',3));
+    $gr -> stamps(closed_circle($k, $c[$i[$k]], 'black',3));
 }
 foreach my $k (0..6) {
     if ($c[$k] == -2) {$c[$k] = "DNE";} else {}
