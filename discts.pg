@@ -45,35 +45,59 @@ foreach my $k (0..6) {
   "Infinite discontinuity",
 );
 @e = (0,1,1,2,2,2,2);
+
 $x1 = random(1,6);
-$correct = $e[$i[$x1]];
-@incorrect = ();
+do {$x2 = random(1,6);} until ($x2 != $x1);
+
+$correct1 = $e[$i[$x1]];
+$correct2 = $e[$i[$x2]];
+@incorrect1 = ();
 foreach $k (0..3) {
-  if ($k != $correct) {
-    push(@incorrect, $k)
+  if ($k != $correct1) {
+    push(@incorrect1, $k)
     }
 }
-$mc = new_multiple_choice();
-$mc -> qa (
+@incorrect2 = ();
+foreach $k (0..3) {
+  if ($k != $correct2) {
+    push(@incorrect2, $k)
+    }
+}
+$mc1 = new_multiple_choice();
+$mc1 -> qa (
   "What does `f(x)` have at `x` = $x1?", 
-  $continuitytype[$correct],
+  $continuitytype[$correct1],
 );
-$mc -> extra(
-  $continuitytype[$incorrect[0]],
-  $continuitytype[$incorrect[1]],
-  $continuitytype[$incorrect[2]],
+$mc1 -> extra(
+  $continuitytype[$incorrect1[0]],
+  $continuitytype[$incorrect1[1]],
+  $continuitytype[$incorrect1[2]],
+);
+$mc2 = new_multiple_choice();
+$mc2 -> qa (
+  "What does `f(x)` have at `x` = $x2?", 
+  $continuitytype[$correct2],
+);
+$mc2 -> extra(
+  $continuitytype[$incorrect2[0]],
+  $continuitytype[$incorrect2[1]],
+  $continuitytype[$incorrect2[2]],
 );
 
 
 BEGIN_PGML
 [@image(insertGraph($gr), width=>400, height=>200, tex_size=>400)@]*
 
-[@ $mc -> print_q() @]***
-[@ $mc -> print_a() @]***
+[@ $mc1 -> print_q() @]***
+[@ $mc1 -> print_a() @]***
+
+[@ $mc2 -> print_q() @]***
+[@ $mc2 -> print_a() @]***
 END_PGML
 
 
 install_problem_grader(~~&std_problem_grader);
-$showPartialCorrectAnswers = 0;
-ANS(radio_cmp($mc -> correct_ans()));
+$showPartialCorrectAnswers = 1;
+ANS(radio_cmp($mc1 -> correct_ans()));
+ANS(radio_cmp($mc2 -> correct_ans()));
 ENDDOCUMENT();
