@@ -27,14 +27,14 @@ $b7 = $j[9];
 @c = ($j[4],    -2, $j[2],    -2, $j[14], $j[11], $j[10]);
 
 foreach my $k (0..5) {
-    $gr->moveTo($k,$a[$i[$k]]); $gr->lineTo($k+1,$b[$i[$k+1]],'black',3);
+    $gr->moveTo($k,$a[$i[$k]]); $gr->lineTo($k+1,$b[$i[$k+1]]);
 }
-$gr->moveTo(-1,$aneg1); $gr->lineTo(0,$b[$i[0]],'black',3);
-$gr->moveTo(6,$a[$i[6]]); $gr->lineTo(7,$b7,'black',3);
+$gr->moveTo(-1,$aneg1); $gr->lineTo(0,$b[$i[0]]);
+$gr->moveTo(6,$a[$i[6]]); $gr->lineTo(7,$b7);
 foreach my $k (0..6) {
-    $gr -> stamps(open_circle($k, $a[$i[$k]], 'black',3));
-    $gr -> stamps(open_circle($k, $b[$i[$k]], 'black',3));
-    $gr -> stamps(closed_circle($k, $c[$i[$k]], 'black',3));
+    $gr -> stamps(open_circle($k, $a[$i[$k]]));
+    $gr -> stamps(open_circle($k, $b[$i[$k]]));
+    $gr -> stamps(closed_circle($k, $c[$i[$k]]));
 }
 foreach my $k (0..6) {
     if ($c[$k] == -2) {$c[$k] = "DNE";} else {}
@@ -65,14 +65,14 @@ BEGIN_PGML
 
 Find the following. If the limit does not exist, or if the function value is undefined, write: DNE
 
-[`f([$x1])`] = [__]{$c1},
-[`\quad \lim_{x\to[$x1]^-}`] = [__]{$b1},
-[`\quad \lim_{x\to[$x1]^+}`] = [__]{$a1},
-[`\quad \lim_{x\to[$x1]}`] = [__]{$d1}.
+[`f([$x1])`] = [_]{$c1},
+[`\, \lim_{x\to[$x1]^-}`] = [_]{$b1},
+[`\, \lim_{x\to[$x1]^+}`] = [_]{$a1},
+[`\, \lim_{x\to[$x1]}`] = [_]{$d1}.
 
-[`f([$x2])`] = [__]{$c2},
-[`\quad \lim_{x\to[$x2]^-}`] = [__]{$b2},
-[`\quad \lim_{x\to[$x2]^+}`] = [__]{$a2},
-[`\quad \lim_{x\to[$x2]}`] = [__]{$d2}.
+[`f([$x2])`] = [_]{$c2},
+[`\, \lim_{x\to[$x2]^-}`] = [_]{$b2},
+[`\, \lim_{x\to[$x2]^+}`] = [_]{$a2},
+[`\, \lim_{x\to[$x2]}`] = [_]{$d2}.
 END_PGML
 ENDDOCUMENT();
