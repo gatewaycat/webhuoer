@@ -33,7 +33,7 @@ add_functions($gr1[$i], "($Functions1[$i])*$reflect + $shift for x in <-3,3> usi
 add_functions($gr2[$i], "($Functions2[$i])*$reflect for x in <-3,3> using color:black and weight:4");
 }
 
-@i = NchooseK(8,4);
+@i = NchooseK(9,4);
 
 $gr_1 = $gr1[$i[0]];
 $gr_2 = $gr1[$i[1]];
