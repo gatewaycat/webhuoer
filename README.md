@@ -23,3 +23,12 @@ Here are a couple examples.
 <img src="discts6.png" width="200">
 <img src="discts7.png" width="200">
 <img src="discts8.png" width="200">
+
+## Match graphs of f, f': [fprime_match1.pg](fprime_match1.pg)
+Four (f,f') pairs are randomly chosen among 9 parents,
+along with random reflection and shift.
+Here are a couple examples.
+
+<img src="fprime_match1.png" width="200"> <img src="fprime_match2.png" width="200">
+<img src="fprime_match3.png" width="200">
+<img src="fprime_match4.png" width="200">
