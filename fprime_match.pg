@@ -1,0 +1,88 @@
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+
+"MathObjects.pl",
+"parserPopUp.pl",
+"PGchoicemacros.pl",
+"PGcourse.pl",
+"PGgraphmacros.pl",
+"PGML.pl",
+);
+
+
+@Functions1 = (
+  "2*x", "x^2", "x^3-x",
+  "log(abs(x))", "x^3", "1/x",
+  "2/(1+exp(-4*x))-1", "exp(-x^2)*2-1", "x^2-x^4/4"
+);
+@Functions2 = (
+  "1", "2*x", "3*x^2-1",
+  "1/x", "3*x^2", "-1/abs(x)",
+  "6*exp(-3*x)/(1+exp(-3*x))^2", "-3*x*exp(-x^2)", "2*x-x^3"
+);
+
+foreach my $i (0..8) {
+$gr1[$i] = init_graph(-3,-2,3,2,axes=>[0,0],pixels=>[200,200]);
+$gr2[$i] = init_graph(-3,-2,3,2,axes=>[0,0],pixels=>[200,200]);
+$gr1[$i] -> lb('reset');
+$gr2[$i] -> lb('reset');
+$reflect = non_zero_random(-1,1);
+$shift = non_zero_random(-1,1)*0.5;
+add_functions($gr1[$i], "($Functions1[$i])*$reflect + $shift for x in <-3,3> using color:black and weight:4");
+add_functions($gr2[$i], "($Functions2[$i])*$reflect for x in <-3,3> using color:black and weight:4");
+}
+
+@i = NchooseK(8,4);
+
+$gr_1 = $gr1[$i[0]];
+$gr_2 = $gr1[$i[1]];
+$gr_3 = $gr1[$i[2]];
+$gr_4 = $gr1[$i[3]];
+
+$gr_1prime = $gr2[$i[0]];
+$gr_2prime = $gr2[$i[1]];
+$gr_3prime = $gr2[$i[2]];
+$gr_4prime = $gr2[$i[3]];
+
+@j = NchooseK(4,4);
+
+$gr_j0 = $gr1[$i[$j[0]]];
+$gr_j1 = $gr1[$i[$j[1]]];
+$gr_j2 = $gr1[$i[$j[2]]];
+$gr_j3 = $gr1[$i[$j[3]]];
+
+@ABCD = ('A','B','C','D');
+$popup0 = PopUp(["?","A","B","C","D"], @ABCD[$j[0]]);
+$popup1 = PopUp(["?","A","B","C","D"], @ABCD[$j[1]]);
+$popup2 = PopUp(["?","A","B","C","D"], @ABCD[$j[2]]);
+$popup3 = PopUp(["?","A","B","C","D"], @ABCD[$j[3]]);
+
+
+TEXT(beginproblem());
+BEGIN_PGML
+For each given function, find the derivative from the following answer bank.
+
+A. [@ image(insertGraph($gr_1prime), width=>50, height=>50, tex_size=>800)
+@]* B. [@ image(insertGraph($gr_2prime), width=>50, height=>50, tex_size=>800)
+@]* C. [@ image(insertGraph($gr_3prime), width=>50, height=>50, tex_size=>800)
+@]* D. [@ image(insertGraph($gr_4prime), width=>50, height=>50, tex_size=>800)
+@]*
+
+[`\frac d{dx} \Big(`] [@
+  image(insertGraph($gr_j0), width=>50, height=>50, tex_size=>800)
+@]* [`\Big) \,\, = \,\,`] [_]{$popup0}
+
+[`\frac d{dx} \Big(`] [@
+  image(insertGraph($gr_j1), width=>50, height=>50, tex_size=>800)
+@]* [`\Big) \,\, = \,\,`] [_]{$popup1}
+
+[`\frac d{dx} \Big(`] [@
+  image(insertGraph($gr_j2), width=>50, height=>50, tex_size=>800)
+@]* [`\Big) \,\, = \,\,`] [_]{$popup2}
+
+[`\frac d{dx} \Big(`] [@
+  image(insertGraph($gr_j3), width=>50, height=>50, tex_size=>800)
+@]* [`\Big) \,\, = \,\,`] [_]{$popup3}
+END_PGML
+ENDDOCUMENT();
