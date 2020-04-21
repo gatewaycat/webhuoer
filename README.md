@@ -1,8 +1,15 @@
-# webhuoer
-WeBWorK Problems
+# WeBHuoeR: Repo of WeBWorK Problems
 
-## 1. Limits graphically (randomized graph): [limits.pg](limits.pg)
-![limits](limits.png)
+## Limits from a (randomized) graph: [limits.pg](limits.pg)
+Every student gets a completely different graph. Here are a couple examples.
 
-## 1. Discontinuities graphically (randomized graph): [discts.pg](discts.pg)
+<img src="limits1.png" width="200"> <img src="limits2.png" width="200">
+<img src="limits3.png" width="200">
+<img src="limits4.png" width="200">
+<img src="limits5.png" width="200">
+<img src="limits6.png" width="200">
+<img src="limits7.png" width="200">
+<img src="limits8.png" width="200">
+
+## Discontinuities graphically (randomized graph): [discts.pg](discts.pg)
 ![discts](discts.png)
