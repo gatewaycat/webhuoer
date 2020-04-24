@@ -2,11 +2,12 @@ DOCUMENT();
 loadMacros(
   "PGstandard.pl",
   "MathObjects.pl",
+  "parserPopUp.pl",
+#  "PGanswermacros.pl",
   "PGchoicemacros.pl",
-  "PGanswermacros.pl",
+  "PGcourse.pl",
   "PGgraphmacros.pl",
   "PGML.pl",
-  "PGcourse.pl",
 );
 
 TEXT(beginproblem());
@@ -46,58 +47,49 @@ foreach my $k (0..6) {
 );
 @e = (0,1,1,2,2,2,2);
 
-$x1 = random(1,6);
-do {$x2 = random(1,6);} until ($x2 != $x1);
+@answers = NchooseK(3,3);
+do {$x1 = random(0,6);} until ($e[$i[$x1]] == $answers[0]);
+do {$x2 = random(0,6);} until ($e[$i[$x2]] == $answers[1]);
+do {$x3 = random(0,6);} until ($e[$i[$x3]] == $answers[2]);
 
-$correct1 = $e[$i[$x1]];
-$correct2 = $e[$i[$x2]];
-@incorrect1 = ();
-foreach $k (0..3) {
-  if ($k != $correct1) {
-    push(@incorrect1, $k)
-    }
-}
-@incorrect2 = ();
-foreach $k (0..3) {
-  if ($k != $correct2) {
-    push(@incorrect2, $k)
-    }
-}
-$mc1 = new_multiple_choice();
-$mc1 -> qa (
-  "What does `f(x)` have at `x` = $x1?", 
-  $continuitytype[$correct1],
-);
-$mc1 -> extra(
-  $continuitytype[$incorrect1[0]],
-  $continuitytype[$incorrect1[1]],
-  $continuitytype[$incorrect1[2]],
-);
-$mc2 = new_multiple_choice();
-$mc2 -> qa (
-  "What does `f(x)` have at `x` = $x2?", 
-  $continuitytype[$correct2],
-);
-$mc2 -> extra(
-  $continuitytype[$incorrect2[0]],
-  $continuitytype[$incorrect2[1]],
-  $continuitytype[$incorrect2[2]],
-);
+$popup1 = PopUp(["",
+  $continuitytype[0],
+  $continuitytype[1],
+  $continuitytype[2],
+  $continuitytype[3],
+], $continuitytype[$e[$i[$x1]]]);
+$popup2 = PopUp(["",
+  $continuitytype[0],
+  $continuitytype[1],
+  $continuitytype[2],
+  $continuitytype[3],
+], $continuitytype[$e[$i[$x2]]]);
+$popup3 = PopUp(["",
+  $continuitytype[0],
+  $continuitytype[1],
+  $continuitytype[2],
+  $continuitytype[3],
+], $continuitytype[$e[$i[$x3]]]);
 
 
 BEGIN_PGML
 [@image(insertGraph($gr), width=>400, height=>200, tex_size=>400)@]*
 
-[@ $mc1 -> print_q() @]***
-[@ $mc1 -> print_a() @]***
+What type of discontinuity (or continuity)
+does `f(x)` have at `x=[$x1]`?
 
-[@ $mc2 -> print_q() @]***
-[@ $mc2 -> print_a() @]***
+[_]{$popup1}
+
+What type of discontinuity (or continuity)
+does `f(x)` have at `x=[$x2]`?
+
+[_]{$popup2}
+
+What type of discontinuity (or continuity)
+does `f(x)` have at `x=[$x3]`?
+
+[_]{$popup3}
+
+
 END_PGML
-
-
-install_problem_grader(~~&std_problem_grader);
-$showPartialCorrectAnswers = 1;
-ANS(radio_cmp($mc1 -> correct_ans()));
-ANS(radio_cmp($mc2 -> correct_ans()));
 ENDDOCUMENT();
