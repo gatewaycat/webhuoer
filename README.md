@@ -1,8 +1,8 @@
-# WeBHuoeR: Repo of WeBWorK Problems
+# WeBHuoeR: A Repo of WeBWorK Problems
 
 ## Identify limits from a (randomized) graph: [limits.pg](limits.pg)
 Every student gets a completely different graph.
-Here are a couple examples.
+Here are 8 examples.
 
 <img src="thumbnails/limits1.png" width="200"> <img src="thumbnails/limits2.png" width="200">
 <img src="thumbnails/limits3.png" width="200">
@@ -14,7 +14,7 @@ Here are a couple examples.
 
 ## Identify discontinuities from a (randomized) graph: [continuity.pg](continuity.pg)
 Every student gets a completely different graph.
-Here are a couple examples.
+Here are 8 examples.
 
 <img src="thumbnails/continuity1.png" width="200"> <img src="thumbnails/continuity2.png" width="200">
 <img src="thumbnails/continuity3.png" width="200">
@@ -27,7 +27,7 @@ Here are a couple examples.
 ## Match graphs of f, f': [fprime_match1.pg](fprime_match1.pg)
 Four (f,f') pairs are randomly chosen among 9 parents,
 along with random reflection and shift.
-Here are a couple examples.
+Here are 4 examples.
 
 <img src="thumbnails/fprime_match1.png" width="200"> <img src="thumbnails/fprime_match2.png" width="200">
 <img src="thumbnails/fprime_match3.png" width="200">
