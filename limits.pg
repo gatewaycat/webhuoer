@@ -61,7 +61,7 @@ $d2 = $d[$i[$x2]];
 
 TEXT(beginproblem());
 BEGIN_PGML
-[@image(insertGraph($gr), width=>400, height=>200, tex_size=>400)@]*
+[@image(insertGraph($gr), width=>400, height=>200, tex_size=>900)@]*
 
 Find the following. If the limit does not exist, or if the function value is undefined, write: DNE
 

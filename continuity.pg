@@ -73,7 +73,7 @@ $popup3 = PopUp(["",
 
 
 BEGIN_PGML
-[@image(insertGraph($gr), width=>400, height=>200, tex_size=>400)@]*
+[@image(insertGraph($gr), width=>400, height=>200, tex_size=>900)@]*
 
 What type of discontinuity (or continuity)
 does `f(x)` have at `x=[$x1]`?

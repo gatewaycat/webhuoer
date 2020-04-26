@@ -64,25 +64,25 @@ BEGIN_PGML
 For each given function, find the derivative from the following answer bank.
 
 A. [@ image(insertGraph($gr_1prime), width=>50, height=>50, tex_size=>800)
-@]* B. [@ image(insertGraph($gr_2prime), width=>50, height=>50, tex_size=>800)
-@]* C. [@ image(insertGraph($gr_3prime), width=>50, height=>50, tex_size=>800)
-@]* D. [@ image(insertGraph($gr_4prime), width=>50, height=>50, tex_size=>800)
+@]* B. [@ image(insertGraph($gr_2prime), width=>50, height=>50, tex_size=>80)
+@]* C. [@ image(insertGraph($gr_3prime), width=>50, height=>50, tex_size=>80)
+@]* D. [@ image(insertGraph($gr_4prime), width=>50, height=>50, tex_size=>80)
 @]*
 
 [`\frac d{dx} \Big(`] [@
-  image(insertGraph($gr_j0), width=>50, height=>50, tex_size=>800)
+  image(insertGraph($gr_j0), width=>50, height=>50, tex_size=>80)
 @]* [`\Big) \,\, = \,\,`] [_]{$popup0}
 
 [`\frac d{dx} \Big(`] [@
-  image(insertGraph($gr_j1), width=>50, height=>50, tex_size=>800)
+  image(insertGraph($gr_j1), width=>50, height=>50, tex_size=>80)
 @]* [`\Big) \,\, = \,\,`] [_]{$popup1}
 
 [`\frac d{dx} \Big(`] [@
-  image(insertGraph($gr_j2), width=>50, height=>50, tex_size=>800)
+  image(insertGraph($gr_j2), width=>50, height=>50, tex_size=>80)
 @]* [`\Big) \,\, = \,\,`] [_]{$popup2}
 
 [`\frac d{dx} \Big(`] [@
-  image(insertGraph($gr_j3), width=>50, height=>50, tex_size=>800)
+  image(insertGraph($gr_j3), width=>50, height=>50, tex_size=>80)
 @]* [`\Big) \,\, = \,\,`] [_]{$popup3}
 END_PGML
 ENDDOCUMENT();
